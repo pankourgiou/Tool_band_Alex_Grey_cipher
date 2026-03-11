@@ -1,0 +1,1 @@
+#This is the Alex Grey tool band cipher. So copy-paste the code on your notepad ->save as .html and double click the file and you are ready to go! Alex Grey/tool band cipher decoded.here you will be able to encrypt your message using the cipher.
