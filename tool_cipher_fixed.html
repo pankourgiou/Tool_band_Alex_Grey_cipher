@@ -232,11 +232,11 @@ Object.keys(G).forEach(function(k) {
 function doDownload(outId) {
   var cells = document.getElementById(outId).querySelectorAll('.gc');
   if (!cells.length) return;
-  var GSIZE = 72, PAD = 20, GAP = 4, LABEL = 14;
+  var GSIZE = 72, PAD = 20, GAP = 4;
   var perRow = Math.min(cells.length, 14);
   var rows = Math.ceil(cells.length / perRow);
   var CW = perRow * (GSIZE + GAP) + PAD * 2;
-  var CH = rows * (GSIZE + LABEL + GAP) + PAD * 2;
+  var CH = rows * (GSIZE + GAP) + PAD * 2;
   var canvas = document.getElementById('canvas');
   canvas.width = CW; canvas.height = CH;
   var ctx = canvas.getContext('2d');
@@ -247,17 +247,13 @@ function doDownload(outId) {
     var glEl = cell.querySelector('.gl');
     var ch = glEl ? glEl.textContent : ' ';
     var x = PAD + col * (GSIZE + GAP);
-    var y = PAD + row * (GSIZE + LABEL + GAP);
+    var y = PAD + row * (GSIZE + GAP);
     if (ch !== ' ' && preloaded[ch] && preloaded[ch].complete) {
       ctx.fillStyle = 'rgba(255,255,255,0.92)';
       ctx.beginPath();
       ctx.roundRect(x, y, GSIZE, GSIZE, 3);
       ctx.fill();
       ctx.drawImage(preloaded[ch], x, y, GSIZE, GSIZE);
-      ctx.fillStyle = 'rgba(200,146,42,0.6)';
-      ctx.font = 'bold 9px serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(ch, x + GSIZE / 2, y + GSIZE + 11);
     } else if (ch !== ' ') {
       ctx.fillStyle = 'rgba(200,146,42,0.12)';
       ctx.fillRect(x, y, GSIZE, GSIZE);
